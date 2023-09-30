@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-using System.Net.WebSockets;
-
+﻿
 Console.WriteLine("Задание 1,вариант 10");//задание 1 
 for (int i = 30; i < 100; i += 7)
 {
