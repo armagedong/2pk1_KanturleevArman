@@ -1,9 +1,9 @@
 ﻿
-string formula = Console.ReadLine();
+string formula = Console.ReadLine();//входные данные
 
 Proverka(formula);
 
-static void Proverka(string str)
+static void Proverka(string str)//статичный метод, который не возвращает никаких значений и определяет формулу
 {
     char[] strings = str.ToCharArray();
     int count1 = 0;
