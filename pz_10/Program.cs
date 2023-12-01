@@ -6,7 +6,7 @@ string[] text1 = str1.Split(); //разбивание строчек на мас
 string[] text2 = str2.Split();
 string end = "";//результирующая строка
 
-if (text1.Length < text2.Length)//попарно заносим в результирующую строку слова
+if (text1.Length < text2.Length)//попарно заносим в результирующую строку слова.
 {
     for (int i = 0; i < text1.Length; i++)
     {
