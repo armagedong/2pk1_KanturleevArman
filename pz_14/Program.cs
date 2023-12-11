@@ -1,4 +1,6 @@
-﻿string path = "pz_04.txt";
+﻿using System.Reflection.PortableExecutable;
+
+string path = "pz_04.txt";
 using(FileStream File = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite))// Открываем файл для записи
 {
     using (StreamWriter Writer = new StreamWriter(File))// Создаем объект для записи в файл
@@ -6,10 +8,27 @@ using(FileStream File = new FileStream(path, FileMode.OpenOrCreate, FileAccess.R
         // Здесь могут быть операции записи в файл, но в данном случае они отсутствуют
     }
 }
-using (FileStream File = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite))// Открываем файл для чтения
+using (FileStream File = new FileStream(path, FileMode.Open, FileAccess.Read))// Открываем файл для чтения
 {
-    using(StreamReader Reader = new StreamReader(File))  // Создаем объект для чтения из файла
-    {   
+
+    using (StreamReader Reader = new StreamReader(File))  // Создаем объект для чтения из файла
+    {
+        using (StreamReader Reader1 = new StreamReader(File))// Создаем объект для чтения из файла
+        {
+            string[] print = Reader1.ReadToEnd().Split('\n');
+            foreach (string str in print)
+            {
+                Console.WriteLine(str);
+            }
+        }
+    }
+
+}
+using (FileStream File = new FileStream(path, FileMode.Open, FileAccess.Read))// Открываем файл для чтения
+{
+
+    using (StreamReader Reader = new StreamReader(File))  // Создаем объект для чтения из файла
+    {
         // Читаем содержимое файла и анализируем даты рождения
         string[]txt = Reader.ReadToEnd().Split(' ','-','\n');
         string[]year = new string[txt.Length/4];
@@ -65,8 +84,6 @@ using (FileStream File = new FileStream(path, FileMode.OpenOrCreate, FileAccess.
         }
         int indexminmont = 0;
         string olderMonth = array.Min();
-        Console.WriteLine(olderMonth);
-
         // день(самый страший)
         List<string> array1 = new List<string>();//создаем лист, который будет хранить в себе информаци
         for (int i = 0; i < year.Length; i++)
@@ -80,7 +97,6 @@ using (FileStream File = new FileStream(path, FileMode.OpenOrCreate, FileAccess.
         }
         
         string olderDAy = array1.Min();
-        Console.WriteLine(olderDAy);
         // Находим индекс в массиве, который соответствует самой старшей дате рождения с тремя условиями
         for (int i = 0; i < year.Length; i++)
         {
@@ -90,7 +106,10 @@ using (FileStream File = new FileStream(path, FileMode.OpenOrCreate, FileAccess.
             }
         }
 
-        Console.WriteLine($"Самый страший это {txt[indexminmont * 4 + 3]}"); // Выводим информацию о самом старшем человеке на экран
+
+        
+
+        Console.WriteLine($"\nСамый старший {txt[indexminmont * 4 + 3]}"); // Выводим информацию о самом старшем человеке на экран
     }
 
 }
